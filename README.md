@@ -3,7 +3,9 @@ Documentação do Sistema - Sistema Stock Exchange Restful
 URL DE CHAMADA DO REST
 
 - Após 100 iterações, o sistema cria um documento .txt na pasta relatorios/, com o nome de relatorio + dataAtual + .txt
+
 API REST
+--------------------------------------------------------------------------
 
 - Para criar uma conta, a url de request é http://localhost:8080/contas, tipo POST, no formato json abaixo:
 {
