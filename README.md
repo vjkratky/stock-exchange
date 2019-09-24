@@ -8,6 +8,7 @@ API REST
 --------------------------------------------------------------------------
 
 - Para criar uma conta, a url de request é http://localhost:8080/contas, tipo POST, no formato json abaixo:
+
 {
 	"email": "joao@gmail.com",
 	"valorDisponibilizado": 1000
@@ -17,19 +18,22 @@ API REST
 
 Para a verificação de qual conta pertece a qual empresa, e a sua quantidade de ações, é necessário criar um registro da tabela empresa, com referência na tabela conta.
 
-A inserção de um registro empresa é feita pela url http://localhost:8080/empresas/{idConta}/contas, tipo POST, no formato json abaixo
+A inserção de um registro empresa é feita pela url http://localhost:8080/empresas/{idConta}/contas, tipo POST, no formato json abaixo:
+
 {
     "nome": "AXC",
     "acoes": 0
 }
 
 - Para criar um monitoramento, a url de request é http://localhost:8080/monitoramentos/{idEmpresa}, tipo POST, no formato json abaixo:
+
 {
 	"precoCompra": 10.2,
 	"PrecoVenda": 10.5
 }
 
 - Para alterar um monitoramento, a url de request é http://localhost:8080/monitoramentos/{idMonitoramento}, tipo PUT, no formato json abaixo:
+
 {
 	"id": 1726,
 	"precoCompra": 10.2,
