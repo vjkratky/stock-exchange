@@ -67,10 +67,11 @@ public class NegociacaoController {
 				mudancaDeStatus = false;
 				preco = 10 + (1 * Math.random());
 
-				if (monitoramento.getPrecoVenda() >= preco) {
-					if (monitoramento.getEmpresa().getAcoes() > 0) {
+				if (monitoramento.getEmpresa().getAcoes() > 0) {
+					if (monitoramento.getPrecoVenda() <= preco) {
 						mudancaDeStatus = true;
-						valorParaCaixa = monitoramento.getEmpresa().getAcoes() * preco;
+						valorParaCaixa = (monitoramento.getEmpresa().getAcoes() * preco)
+								+ monitoramento.getEmpresa().getConta().getValorDisponibilizado();
 
 						negociacaoVenda = new Negociacao(monitoramento.getEmpresa().getNome(), preco,
 								monitoramento.getEmpresa().getAcoes());
@@ -84,11 +85,11 @@ public class NegociacaoController {
 					}
 				}
 
-				if (monitoramento.getPrecoCompra() <= preco) {
+				if (monitoramento.getPrecoCompra() >= preco) {
 					quantidadeAcoes = (int) Math
 							.floor(monitoramento.getEmpresa().getConta().getValorDisponibilizado() / preco);
 
-					if (quantidadeAcoes > 0) {
+					if (quantidadeAcoes > 1) {
 						mudancaDeStatus = true;
 
 						if ((quantidadeAcoes * preco) != monitoramento.getEmpresa().getConta()
@@ -110,7 +111,7 @@ public class NegociacaoController {
 					}
 				}
 
-				if (mudancaDeStatus) {
+				if (mudancaDeStatus == true) {
 					contaRepository.save(monitoramento.getEmpresa().getConta());
 					empresaRepository.save(monitoramento.getEmpresa());
 				}
